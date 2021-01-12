@@ -1,55 +1,54 @@
-import timeit
+#O(n^2) time | O(1) space
+def version_1(array, targetsum):
 
-#time = O(n^2)| space = O(1)
-def version1(nums,target):
-	for n in nums:
-		no = target - n
+	for i in array:
+		for j in array:
+			if i!=j and i+j == targetsum:
+				return i,j
 
-		for n in nums:
-			if no in nums:
-				return n,no
-
-			else:
-				return "No value pair give the target" 
+	return []
 
 
-#time = O(n)| space = O(n)
-def version2(nums,target):
-	#sorting makes it faster
-	nums.sort()
-	value_dict = {}
-	for n in nums:
-		no = target - n
-		if no in value_dict:
-			return n,no
+#O(n) time | O(n) space
+def version_2(array, targetsum):
+
+	nums = {}
+
+	for i in array:
+		needed = targetsum-i
+
+		if needed in nums:
+			return i, needed
 
 		else:
-			value_dict[n] = True
+			#we add the number we have checked not the resulting value
+			nums[i] = True
 
-	return "No value pair give the target"
-			
-#time = O(nlog(n))| space = O(1)
-def version3(nums,target):
-	#array must first be sorted
-	nums.sort()
+	return []
 
-	left_pointer = 0
-	right_pointer = len(nums)-1
 
-	for n in nums:
-		pointer_sum = nums[left_pointer] + nums[right_pointer]
-		if pointer_sum == target:
-			return nums[left_pointer], nums[right_pointer]
+#O(nlog(n)) time | O(1) space
+def version_3(array, targetsum):
 
-		elif pointer_sum> target:
-			right_pointer -= 1
+	array.sort()
 
-		elif pointer_sum< target:
-			left_pointer += 1
+	left = 0
+	right = len(array)-1
 
-	return "No value pair give the target"
+	while left < right:
+		if array[left] + array[right] == targetsum:
+			return array[left], array[right]
 
-#how about finding all not just one possible pairs
-print(timeit.timeit(str(version1([2,3,5,7,8,9,4,6,1,4,-4], 10))),version1([2,3,5,7,8,9,4,6,1,4,-4], 10))
-print(timeit.timeit(str(version2([2,3,5,7,8,9,4,6,1,4,-4], 10))),version2([2,3,5,7,8,9,4,6,1,4,-4], 10))
-print(timeit.timeit(str(version3([2,3,5,7,8,9,4,6,1,4,-4], 10))),version3([2,3,5,7,8,9,4,6,1,4,-4], 10))
+		elif array[left] + array[right] > targetsum:
+			right -= 1
+
+
+		elif array[left] + array[right] < targetsum:
+			left += 1
+
+	return []
+
+
+print(version_3([5,6,8,3,-4,-1,11],10))
+print(version_2([5,6,8,3,-4,-1,11],10))
+print(version_1([5,6,8,3,-4,-1,11],10))
