@@ -10,6 +10,7 @@ def version_1(array, targetsum):
 
 
 #O(n) time | O(n) space
+#sorting can make this one faster
 def version_2(array, targetsum):
 
 	nums = {}
@@ -28,6 +29,8 @@ def version_2(array, targetsum):
 
 
 #O(nlog(n)) time | O(1) space
+#What makes up this time complexity:the sorting algorithm and the actual time of running the loop. 
+#Is the sorting alg log(n) and the loop n?
 def version_3(array, targetsum):
 
 	array.sort()

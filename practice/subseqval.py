@@ -16,8 +16,8 @@ def version2(sequence=[], subSequence=[]):
 	subSeqId = 0
 
 	for seq in sequence:
-		if subSeqId != len(subSequence):
-			if seq == sequence[subSeqId]:
+		if subSeqId < len(subSequence):
+			if seq == subSequence[subSeqId]:
 				subSeqId += 1
 	return subSeqId == len(subSequence)
 		
