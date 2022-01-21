@@ -1,0 +1,16 @@
+1. It seems that any path that is not the original path(longest) is ok. So he has to travel through multiple stations or just one(in some cases) and this is exactly like finding the shortest path in a Dijkstra's algorithm. SO I need to implement a Dijkstra algorithm or some other minimum pathfinding algorithm after which I input earth as the root node and zearth as the final node and then ask it to find the shortest path giving me the coordinates of start, stations taken, and destination.
+
+2. I need to create a graph that can be traversed and I do that with some fancy in the create_sub_graph and create_graph functions. I have distance from nodes to nodes and names but how can I connect them as other graphs?
+
+3. From my research, it seems I have an undirected graph in my case and I simply need to know what node(station) can reach the other based on their coordinates. Make sure not to connect a station to a farther one directly when it can reach it through another station. How to code this?
+
+4. Essentially, I just created a graph which is a dictionary where the station is a key to another dictionary that contains all other stations and the current station's euclidean distance to them. They serve as the weight for the graph. And I just run this through Dijkstra's algorithm.
+
+5. Then I get the shortest path and I trace back through the graph to find the largest distance on the shortest path. I ensured that earth and zearth were not connected so it won't take that path directly.
+
+6. Space complexity - O(V^3)
+It can be improved if I can find a way to form the graph without creating a subgraph.
+
+Time complexity- O(E+V(logV)+n+n^2+k)
+k is the length of the array of the shortest path
+It can be improved if I can find a way to form the graph without creating a subgraph.

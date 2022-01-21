@@ -1,0 +1,27 @@
+1. Calculating where each pizzeria would reach based on their X, Y, R and then counting the number of pizzerias that reach each square would take forever. 
+Can I find a pattern?
+Or can I find an easy way of calculating everything?
+Or could I eliminate some first then do 2 on the rest?
+Can I add the R to the coords and then instead of counting how many pizzerias are on each square, I skip some? How?
+
+2. It seems, I can't skip. The vibe I'm getting from this now is to build a multi-dimensional array of nxn and then traverse it for each pizzeria: start at the corresponding index (x,y) of the pizzeria on the array and perform all its movements up, down, right, left, up+left, up+right, down+left,down+right,left+up,left+down,right+up,right+down and as you go along increment the value of each index that can is reached. After this, I would need to just get to the array within the array with the largest integer count. 
+
+3. The above works well if I just need the maximum number of ways a square can be reached but I need the number of pizzerias that reach each of those squares. How can I preserve the identity of the pizzeria that reaches a square? Number 3 does not work because a single pizzeria can reach a square multiple times based on its movement. What if I keep track of all visited squares on each run for a pizzeria and if that pizzeria has gotten there before, I don't increment again? This should work. I could just keep a visited array that is checked first before incrementing. This array will contain the index of the square e.g [grid[5[5]], grid[3[5]]]
+
+4. movements in code
+i =  outer, j= inner
+up = i-R
+down = i+R
+left = j-R
+right = j+R
+and then for the combinations just combine the above
+
+5. TO keep track, I want to just check if the value I want to increment is not currently greater than the index of the pizzeria inside the pizzeria list plus 1(This represents the number of the pizzeria). Since a single pizzeria should only increment a square once.
+
+6. I found out that I need not keep track of anything or check as previously described since the first for loop under the main for loop just examines the full length of the pizzeria's limit the x and y axes. i.e It only changes the values of the cross i.e It changes only the values in the row of the x-axis and the values in the column of the y axis so other values outside that range i.e the combinations in no 2 are explored only once by a pizzeria after the main cross has been examined once.
+
+7. Space complexity - O(n^2)
+It cannot be improved as I need to store the grid
+
+  Time complexity - O(n^4)
+  I don't believe this also can be improved.
