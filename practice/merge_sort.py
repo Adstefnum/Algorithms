@@ -1,3 +1,5 @@
+#O(nlog(n)) time 
+#O(n) space for the new array created
 def merge_sort(arr:list):
     
     if len(arr) > 1:
