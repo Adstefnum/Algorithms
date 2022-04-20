@@ -1,23 +1,22 @@
 #time = O(n)| space = O(n)
-def version2(nums,target):
-	
-	i = 0
-	j =len(nums)-1
-	value_dict = set()
-	for x in range(0,len(nums)-1):
-		sum2 = nums[i]+nums[j]
-		if not sum2 >= target:
-			first_sum = target - sum2
-		if first_sum != nums[i] and  first_sum != nums[j]:
-			if first_sum in value_dict:
-				return nums[i],nums[j],first_sum
+def three(array:list,target:int)->list:
+    i,j=0,len(array)-1
+    values = set()
+    for i in range(len(array)-1):
+        sum_ = array[i]+array[j]
+        
+        
+        needed = target-sum_
+            
+        if needed!=array[i] and needed!=array[j]:
+            if needed in values:
+                return [array[i],array[j],needed]
+            values.add(array[i])
+            values.add(array[j])
+            i += 1
+            j -= 1
+    return []
 
-			else:
-				value_dict.add(nums[i])
-				value_dict.add(nums[j])
-				i += 1
-				j -= 1
-
-	return "No value set give the target"
-
-print(version2([2,3,5,7,9,8,4,1,4,-4], 16))
+print(three([2,3,5,7,9,8,4,1,4,-4], 16))    
+print(three([20,3,5,7,9,8,4,1,4,-4], 16))
+            
