@@ -1,20 +1,12 @@
-def bubbleSort(array):
-
-	checker = False
-	counter = 0
-
-	while not checker:
-		checker = True
-
-		for j in range(len(array)-1-counter):
-
-			if array[j] < array[j-1]:
-				array[j],array[j-1] = array[j-1],array[j]
-				checker = False
-				j =+ 1
-				
-		counter += 1
-
-	return array
-
-print(bubbleSort([2,3,5,-6,-1,0,7,9,8,4,1,4,-4]))
+def bubble_sort(array:list)->list:
+    n = len(array)
+    
+    for i in range(n-1):
+        for j in range(0,n-i-1):
+            if array[j] > array[j+1]:
+                array[j],array[j+1] = array[j+1],array[j]
+    return array
+                
+arr = [64, 34, 25, 12, 22, 11, 90]
+ 
+print(bubble_sort(arr))
