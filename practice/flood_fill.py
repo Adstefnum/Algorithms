@@ -2,9 +2,9 @@
 #O(nm) time, n*m being the area of the space to be filled
 #O(nm) space as this is what will fill the call stack??
 def floodFill(image, sr:int, sc:int, newColor:int):
+    rows = len(image)
+    cols = len(image[0])
     def dfs(image, sr: int, sc: int, newColor: int,oldColor: int):
-        rows = len(image)
-        cols = len(image[0])
         
         if sr>=rows or sr < 0 or sc >= cols or sc < 0 or image[sr][sc]!= oldColor:
             return
